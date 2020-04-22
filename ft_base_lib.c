@@ -1,5 +1,10 @@
 #include "ft_marathon_03.h"
 
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
 void	ft_putstr(char *str)
 {
 	int		i;
@@ -48,15 +53,18 @@ int		ft_l_word(char *w)
 	while (w[i] == '\t' || w[i] == ' ')
 		i++;
 	while (w[i] && w[i] != '\t' && w[i] != ' ')
+	{
 		l++;
+		i++;
+	}
 	return (l);
 }
 
 int		**ft_split_numbers(char *s)
 {
-	int			i;
-	int			k;
-	int			**p;
+	int		i;
+	int		k;
+	int		**p;
 
 	p = (int**)malloc(sizeof(int*) * 4);
 	i = -1;
@@ -72,7 +80,7 @@ int		**ft_split_numbers(char *s)
 		if (s[k] && s[k] != '\t' && s[k] != ' ')
 		{
 			if (s[k] > '0' && s[k] < '5')
-				p[i / 4][i % 4] = s[k++];
+				p[i / 4][i % 4] = s[k++] - '0';
 			else
 				return NULL;
 		}

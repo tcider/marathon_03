@@ -16,14 +16,25 @@ int		ft_c_num(int x, int *arr)
 	return (j);
 }
 
-int		**ft_check_argv(int argc, char **argv)
+int		ft_check_corner(int **p)
+{
+	if ((p[0][0] == 1 && p[2][0] != 1) || (p[2][0] == 1 && p[0][0] != 1))
+		return (1);
+	if ((p[1][0] == 1 && p[2][3] != 1) || (p[2][3] == 1 && p[1][0] != 1))
+		return (1);
+	if ((p[3][0] == 1 && p[0][3] != 1) || (p[0][3] == 1 && p[3][0] != 1))
+		return (1);
+	if ((p[1][3] == 1 && p[3][3] != 1) || (p[3][3] == 1 && p[1][3] != 1))
+		return (1);
+	return (0);
+}
+
+int		**ft_check_argv(char **argv)
 {
 	int		**arr;
 	int		i;
 	int		j;
 
-	if (argc != 2)
-		return NULL;
 	if (ft_n_numbers(argv[1]) != 16)
 		return NULL;
 	if (!(arr = ft_split_numbers(argv[1])))
@@ -37,8 +48,12 @@ int		**ft_check_argv(int argc, char **argv)
 			return NULL;
 		j = -1;
 		while (++j < 4)
-			if (arr[i][j] == 4 && arr[i + 1 - 2 * (i % 2)][j] != 1)
+		{
+			if (arr[i][j] + arr[i + 1 - 2 * (i % 2)][j] > 5)
 				return NULL;
+			if (arr[i][j] == 1 && (j == 0 || j == 3) && ft_check_corner(arr))
+				return NULL;
+		}
 	}
 	return (arr);
 }
