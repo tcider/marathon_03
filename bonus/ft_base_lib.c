@@ -69,18 +69,18 @@ int		**ft_split_numbers(char *s)
 	p = (int**)malloc(sizeof(int*) * 4);
 	i = -1;
 	k = 0;
-	while (++i < 16)
+	while (++i < SZ * 4)
 	{
 		if (ft_l_word(&s[k]) > 1)
 			return NULL;	
-		if ((i % 4) == 0)
-			p[i / 4] = (int*)malloc(sizeof(int) * 4);
+		if ((i % SZ) == 0)
+			p[i / SZ] = (int*)malloc(sizeof(int) * SZ);
 		while (s[k] == '\t' || s[k] == ' ')
 			k++;
 		if (s[k] && s[k] != '\t' && s[k] != ' ')
 		{
-			if (s[k] > '0' && s[k] < '5')
-				p[i / 4][i % 4] = s[k++] - '0';
+			if (s[k] > '0' && s[k] <= '0' + SZ)
+				p[i / SZ][i % SZ] = s[k++] - '0';
 			else
 				return NULL;
 		}

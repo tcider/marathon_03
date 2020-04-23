@@ -1,0 +1,2 @@
+Size of map can be changed in "ft_marathon_03.h" file in named const "SZ".
+By default it equals "4", it could be from "3" to "9" included.

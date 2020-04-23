@@ -7,7 +7,7 @@ int		ft_check_left(int v1, int *line)
 
 	i = -1;
 	max = 0;
-	while (++i < 4)
+	while (++i < SZ)
 	{
 		if (line[i] == 0)
 			return (1);
@@ -17,7 +17,7 @@ int		ft_check_left(int v1, int *line)
 			v1--;
 		}
 	}
-	if (max == 4 && v1 != 0)
+	if (max == SZ && v1 != 0)
 		return (0);
 	return (1);
 }
@@ -29,17 +29,17 @@ int		ft_check_right(int v2, int *line)
 
 	i = -1;
 	max = 0;
-	while (++i < 4)
+	while (++i < SZ)
 	{
-		if (line[3 - i] == 0)
+		if (line[SZ - 1 - i] == 0)
 			return (1);
-		if (line[3 - i] > max)
+		if (line[SZ - 1 - i] > max)
 		{
-			max = line[3 - i];
+			max = line[SZ - 1 - i];
 			v2--;
 		}
 	}
-	if (max == 4 && v2 != 0)
+	if (max == SZ && v2 != 0)
 		return (0);
 	return (1);
 }
@@ -57,25 +57,25 @@ int		ft_check_field(int num, int adr, int **view, int **map)
 	int		*col;
 
 	i = -1;
-	while (++i < 4)
-		if (map[adr / 4][i] == num || map[i][adr % 4] == num)
+	while (++i < SZ)
+		if (map[adr / SZ][i] == num || map[i][adr % SZ] == num)
 			return (0);
-	if ((adr / 4 == 0 || adr % 4 == 0) && num == 4)
+	if ((adr / SZ == 0 || adr % SZ == 0) && num == SZ)
 		return (0);
-	col = (int*)malloc(sizeof(int) * 4);
+	col = (int*)malloc(sizeof(int) * SZ);
 	i = -1;
-	while (++i < 4)
-		col[i] = map[i][adr % 4];
-	col[adr / 4] = num;
-	if (!ft_check_view(view[0][adr % 4], view[1][adr % 4], col))
+	while (++i < SZ)
+		col[i] = map[i][adr % SZ];
+	col[adr / SZ] = num;
+	if (!ft_check_view(view[0][adr % SZ], view[1][adr % SZ], col))
 		return (0);
 	free(col);
-	map[adr / 4][adr % 4] = num;
-	if (!ft_check_view(view[2][adr / 4], view[3][adr / 4], map[adr / 4]))
+	map[adr / SZ][adr % SZ] = num;
+	if (!ft_check_view(view[2][adr / SZ], view[3][adr / SZ], map[adr / SZ]))
 	{
-		map[adr / 4][adr % 4] = 0;
+		map[adr / SZ][adr % SZ] = 0;
 		return (0);
 	}
-	map[adr / 4][adr % 4] = 0;
+	map[adr / SZ][adr % SZ] = 0;
 	return (1);
 }
