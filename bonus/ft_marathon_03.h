@@ -4,6 +4,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+# define SZ 4
+
 void	ft_putstr(char *str);
 void	ft_putchar(char c);
 int		ft_n_numbers(char *str);
