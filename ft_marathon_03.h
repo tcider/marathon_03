@@ -14,4 +14,5 @@ int		ft_check_uniq(int **map);
 int		ft_solve_map(int **view, int **map, int adr);
 void	ft_print_map(int **p);
 int		ft_check_field(int num, int adr, int **view, int **map);
+
 #endif
