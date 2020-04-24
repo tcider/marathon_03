@@ -1,6 +1,6 @@
 NAME = marathon-03
 
-SRC = *.c
+SRC = ft_base_lib.c ft_check_lib.c ft_make_lib.c ft_solve_lib.c main.c
 
 FLAGS = -Wall -Wextra -Werror
 

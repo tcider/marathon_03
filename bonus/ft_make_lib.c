@@ -1,6 +1,6 @@
 #include "ft_marathon_03.h"
 
-int		**ft_1234_line(int i, int **p)
+int		**ft_full_line(int i, int **p)
 {
 	int		j;
 
@@ -20,7 +20,7 @@ int		**ft_1234_line(int i, int **p)
 	return (p);
 }
 
-int		**ft_4xxx_line(int i, int **p)
+int		**ft_max_line(int i, int **p)
 {
 	if (i / SZ == 0)
 		p[0][i % SZ] = SZ;
@@ -50,9 +50,9 @@ int		**ft_make_map(int **view)
 	while (++i < SZ * 4)
 	{
 		if (view[i / SZ][i % SZ] == SZ)
-			p = ft_1234_line(i, p);
+			p = ft_full_line(i, p);
 		if (view[i / SZ][i % SZ] == 1)
-			p = ft_4xxx_line(i, p);
+			p = ft_max_line(i, p);
 	}
 	return (p);
 }
